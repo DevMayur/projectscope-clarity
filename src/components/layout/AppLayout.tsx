@@ -2,10 +2,13 @@ import { PropsWithChildren } from "react";
 import { SidebarProvider, Sidebar, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { Plus, LogOut } from "lucide-react";
 import { NewProjectDialog } from "@/components/modals/NewProjectDialog";
+import { useAuth } from "@/auth/AuthContext";
 
 export function AppLayout({ children }: PropsWithChildren) {
+  const { user, logout } = useAuth();
+
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full">
@@ -19,7 +22,7 @@ export function AppLayout({ children }: PropsWithChildren) {
               <SidebarTrigger className="ml-1" />
               <div className="text-sm text-muted-foreground">Aurora PM</div>
             </div>
-            <div className="ml-auto px-3">
+            <div className="ml-auto px-3 flex items-center gap-2">
               <NewProjectDialog
                 trigger={
                   <Button variant="hero" size="sm">
@@ -27,6 +30,10 @@ export function AppLayout({ children }: PropsWithChildren) {
                   </Button>
                 }
               />
+              <span className="hidden md:inline text-sm text-muted-foreground">{user?.username}</span>
+              <Button variant="outline" size="sm" onClick={logout}>
+                <LogOut className="mr-2" /> Logout
+              </Button>
             </div>
           </header>
           <main className="flex-1 p-4 md:p-6">
@@ -37,3 +44,4 @@ export function AppLayout({ children }: PropsWithChildren) {
     </SidebarProvider>
   );
 }
+
