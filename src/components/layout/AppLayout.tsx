@@ -1,8 +1,9 @@
 import { PropsWithChildren } from "react";
-import { SidebarProvider, Sidebar, SidebarContent, SidebarHeader, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider, Sidebar, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
+import { NewProjectDialog } from "@/components/modals/NewProjectDialog";
 
 export function AppLayout({ children }: PropsWithChildren) {
   return (
@@ -19,9 +20,13 @@ export function AppLayout({ children }: PropsWithChildren) {
               <div className="text-sm text-muted-foreground">Aurora PM</div>
             </div>
             <div className="ml-auto px-3">
-              <Button variant="hero" size="sm">
-                <Plus className="mr-2" /> New Project
-              </Button>
+              <NewProjectDialog
+                trigger={
+                  <Button variant="hero" size="sm">
+                    <Plus className="mr-2" /> New Project
+                  </Button>
+                }
+              />
             </div>
           </header>
           <main className="flex-1 p-4 md:p-6">

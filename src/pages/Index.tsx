@@ -1,6 +1,8 @@
 import { Seo } from "@/components/seo/Seo";
 import { Button } from "@/components/ui/button";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
+import { NewProjectDialog } from "@/components/modals/NewProjectDialog";
+import { NewTaskDialog } from "@/components/modals/NewTaskDialog";
 
 const Index = () => {
   return (
@@ -12,8 +14,8 @@ const Index = () => {
           <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">Dashboard — Project Management & Reporting</h1>
           <p className="mt-2 text-muted-foreground max-w-2xl">Track progress, spot blockers, and get a snapshot of your sprints, milestones, and team productivity at a glance.</p>
           <div className="mt-4 flex flex-wrap gap-3">
-            <Button variant="hero">Create Project</Button>
-            <Button variant="outline">New Task</Button>
+            <NewProjectDialog trigger={<Button variant="hero">Create Project</Button>} />
+            <NewTaskDialog trigger={<Button variant="outline">New Task</Button>} />
           </div>
         </div>
       </section>
